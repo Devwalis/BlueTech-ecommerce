@@ -22,7 +22,7 @@ public class Endereco {
     @Column(name = "cidade")
     private String cidade;
 
-    @Column(name = "uf")
+    @Column(name = "uf", length = 2)
     private char uf;
 
     @Column(name = "bairro")

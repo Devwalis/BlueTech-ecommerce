@@ -25,8 +25,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "tb_usuario")
-public class Usuarios  implements UserDetails {
+@Entity(name = "tb_usuarios")
+public class Usuario  implements UserDetails {
     
 
     @Id
@@ -43,6 +43,9 @@ public class Usuarios  implements UserDetails {
 
     @Column(nullable = false)
     private String senha;
+
+    @Column( nullable = false)
+    private String cpf;
 
 
     @Column(nullable = false)
