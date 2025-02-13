@@ -21,6 +21,5 @@ public record UsuarioDTO(
 public TipoUsuario getTipoUsuarioEnum(){
     return TipoUsuario.valueOf(tipoUsuario.toUpperCase());
 }
-
 }
 

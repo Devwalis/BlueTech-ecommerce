@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import blue_ecommerce.dtos.CriarUsuarioDTO;
+import blue_ecommerce.dtos.UsuarioDTO;
 import blue_ecommerce.service.UsuarioService;
 
 @RestController
@@ -18,9 +18,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
     
-    @PostMapping
+    @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public CriarUsuarioDTO cadastrar(@RequestBody CriarUsuarioDTO dto){
+    public UsuarioDTO cadastrar(@RequestBody UsuarioDTO dto){
         return usuarioService.cadastrar(dto);
     }
     

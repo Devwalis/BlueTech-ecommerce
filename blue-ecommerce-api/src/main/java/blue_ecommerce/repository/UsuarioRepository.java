@@ -6,11 +6,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import blue_ecommerce.models.Usuarios;
+import blue_ecommerce.models.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuarios, Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     
-    Optional<Usuarios> findByEmail(String email);
-    boolean existByEmail(String email);
+    Optional<Usuario> findByEmail(String email);
+    boolean existsByEmail(String email);
 }
