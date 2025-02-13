@@ -45,6 +45,13 @@ public ResponseEntity<Map<String, String>> handleGeneralExceptions(Exception ex)
     errorResponse.put("type", "INTERNAL_ERROR");
     return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 }
+
+@ExceptionHandler(DataIntegrityViolationException.class)
+public ResponseEntity<Map<String, String>> handleDataIntegrity(DataIntegrityViolationException ex){
+    Map<String, String> errorResponse = new HashMap<>();
+    errorResponse.put("message", "Dados dubplicados: Verifique CPF ou Email");
+    return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
+}
     
 
 }

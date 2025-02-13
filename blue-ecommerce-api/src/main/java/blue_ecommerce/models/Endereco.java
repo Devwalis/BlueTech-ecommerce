@@ -23,12 +23,12 @@ public class Endereco {
     private String cidade;
 
     @Column(name = "uf", length = 2)
-    private char uf;
+    private String uf;
 
     @Column(name = "bairro")
     private String bairro;
 
-    @Column(name = "Complemento")
+    @Column(name = "complemento")
     private String complemento;
 
     
