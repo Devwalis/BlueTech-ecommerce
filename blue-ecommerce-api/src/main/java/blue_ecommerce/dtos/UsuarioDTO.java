@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import blue_ecommerce.models.TipoUsuario;
 
 
 
@@ -16,13 +15,9 @@ public record UsuarioDTO(
     LocalDate dataNascimento,
     String telefone,
     String cpf,
-    String tipoUsuario,
-    EnderecoDTO endereco
+    String tipoUsuario
     
 ){
 
-public TipoUsuario getTipoUsuarioEnum(){
-    return TipoUsuario.valueOf(tipoUsuario.toUpperCase());
-}
 }
 

@@ -2,21 +2,20 @@ package blue_ecommerce.models;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 
 
@@ -24,7 +23,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity(name = "tb_usuarios")
 public class Usuario  implements UserDetails {
     
@@ -54,29 +52,84 @@ public class Usuario  implements UserDetails {
     @Column(nullable = false)
     private String telefone;
 
-    @Enumerated(EnumType.STRING)
+
     @Column(nullable = false)
-    private TipoUsuario tipoUsuario;
+    private Boolean administrador;
+
+    @Column(nullable = false)
+    private Boolean fornecedor;
+
+    @Column(nullable = false)
+    private Boolean cliente;
 
 
-    @Embedded
-    private Endereco endereco;
+    public Usuario(){
+        this.administrador = Boolean.FALSE;
+        this.fornecedor = Boolean.FALSE;
+        this.cliente = Boolean.FALSE;
+    }
+
+    public String getTipoUsuario(){
+        if(this.administrador) return "ADMINISTRADOR";
+        if(this.fornecedor) return "FORNECEDOR";
+        return "CLIENTE";
+    }
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
-        return tipoUsuario.getAuthorities();
+        if(administrador){
+        return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
+        if(fornecedor){
+            return List.of(new SimpleGrantedAuthority("ROlE_FORNECEDOR"));
+
+        }
+        if(cliente){
+            return List.of(new SimpleGrantedAuthority("Role_CLIENTE"));
+
+        }
+        return null;
     }
 
-   @Override
-   public String getPassword(){
-    return senha;
-   }
+    @Override
+    public String getPassword(){
+        return senha;
 
-   @Override
-   public String getUsername(){
-    return email;
-   }
+    }
+
+    @Override
+    public String getUsername(){
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired(){
+        return true;
+
+    }
+
+    @Override
+    public boolean isAccountNonLocked(){
+        return true;
+
+
+
+}
+
+    @Override
+    public boolean isCredentialsNonExpired(){   
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled(){
+        return true;
+    }
+}
+
+
+
 
 
 
@@ -89,4 +142,4 @@ public class Usuario  implements UserDetails {
 
 
     
-}
+

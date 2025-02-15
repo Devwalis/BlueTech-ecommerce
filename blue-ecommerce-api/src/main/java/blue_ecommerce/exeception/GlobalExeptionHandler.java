@@ -30,13 +30,7 @@ public class GlobalExeptionHandler {
         errors.put("type", "FORM_VALIDATION_ERROR");
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);    }
 
-@ExceptionHandler(DataIntegrityViolationException.class)
-public ResponseEntity<Map<String, String>> handleDataIntegrityViolation(DataIntegrityViolationException ex){
-    Map<String, String> errorResponse = new HashMap<>();
-    errorResponse.put("message", "Ocorreu um erro interno no servidor");
-    errorResponse.put("type", "INTERNAL_ERROR");
-    return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-}
+
 
 @ExceptionHandler(Exception.class)
 public ResponseEntity<Map<String, String>> handleGeneralExceptions(Exception ex){
@@ -45,13 +39,15 @@ public ResponseEntity<Map<String, String>> handleGeneralExceptions(Exception ex)
     errorResponse.put("type", "INTERNAL_ERROR");
     return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 }
-
 @ExceptionHandler(DataIntegrityViolationException.class)
-public ResponseEntity<Map<String, String>> handleDataIntegrity(DataIntegrityViolationException ex){
+public ResponseEntity<Map<String, String>> handleDataIntegrityViolation(DataIntegrityViolationException ex) {
+    String mensagem = ex.getMostSpecificCause().getMessage(); // Mensagem específica do banco
     Map<String, String> errorResponse = new HashMap<>();
-    errorResponse.put("message", "Dados dubplicados: Verifique CPF ou Email");
-    return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
+    errorResponse.put("message", mensagem.contains("Duplicate entry") 
+        ? "Dados duplicados: CPF ou Email já cadastrado" 
+        : "Erro de integridade de dados");
+    return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
 }
-    
+
 
 }
