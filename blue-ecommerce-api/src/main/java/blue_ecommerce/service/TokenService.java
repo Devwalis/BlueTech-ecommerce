@@ -9,21 +9,24 @@ import org.springframework.beans.factory.annotation.Value;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 
-import blue_ecommerce.models.Cliente;
+import blue_ecommerce.models.Usuario;
+
+
 
 
 public class TokenService {
     //Gerar um token a partir do cliente/usuario
-    public String generateToken (Cliente cliente){
+    public String generateToken (Usuario usuario){
         Algorithm algorithm  = Algorithm.HMAC256(SECRET_KEY);
 
         return JWT.create()
             .withIssuer(TOKEN_ISSUER)
-            .withASubject(cliente.getCpf())
-            .wiwthExpiresAt(_expirationDate())
-            .withClaim("id", cliente.getId())
+            .withSubject(usuario.getEmail())
+            .withExpiresAt(_gerarDataExpiracao())
+            .withClaim("id", usuario.getId())
+            .withClaim("nome", usuario.getNome())
             .sign(algorithm);
-
+           
     }
 
 
@@ -33,7 +36,7 @@ public class TokenService {
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
 
 
-        return KWT.require(algorithm)
+        return JWT.require(algorithm)
             .withIssuer(TOKEN_ISSUER)
             .build()
             .verify(token)
@@ -42,8 +45,10 @@ public class TokenService {
 
     //Gera a data de expiração do token JWt
 
-    private Instant _expirationDate(){
-        return LocalDateTime.now().plusDays().toInstant(ZoneOffset.of("-03:00"));
+    private Instant _gerarDataExpiracao(){
+        return LocalDateTime.now()
+        .plusDays(30)
+        .toInstant(ZoneOffset.of("-03:00"));
     }
 
 
