@@ -32,3 +32,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# Ignorar application.properties
+blue-ecommerce-api/src/main/resources/application.properties
