@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -12,8 +13,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import blue_ecommerce.models.Usuario;
 
 
-
-
+@Service
 public class TokenService {
     //Gerar um token a partir do cliente/usuario
     public String generateToken (Usuario usuario){
