@@ -32,7 +32,7 @@ public class TokenService {
 
 
     // Obtém o sujeito (cliente/usuario) a partir do token
-    public String getSubject(String token){
+    public String obterEmailUsuario(String token){
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
 
 
