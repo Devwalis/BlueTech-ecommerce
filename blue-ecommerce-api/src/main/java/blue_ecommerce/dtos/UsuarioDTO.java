@@ -4,13 +4,14 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import blue_ecommerce.models.Usuario;
+
 
 
 
 public record UsuarioDTO(
     String nome,
     String email,
-    String senha,
     @JsonFormat(pattern = "yyyy-MM-dd")
     LocalDate dataNascimento,
     String telefone,
@@ -20,5 +21,16 @@ public record UsuarioDTO(
     
 ){
 
+    public UsuarioDTO(Usuario usuario, String token) {
+        this(
+            usuario.getNome(),
+            usuario.getEmail(),
+            usuario.getDataNascimento(), 
+            usuario.getTelefone(),
+            usuario.getCpf(),
+            usuario.getTipoUsuario(), 
+            token
+        );
+    }
 }
 

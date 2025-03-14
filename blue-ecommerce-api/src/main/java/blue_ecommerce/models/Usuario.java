@@ -77,8 +77,8 @@ public class Usuario  implements UserDetails {
     }
 
 
-    public UsuarioDTO converterParaDTP(){
-        UsuarioDTO  dto = new UsuarioDTO();
+    public UsuarioDTO converterParaDTO(){
+        UsuarioDTO dto = new UsuarioDTO();
 
         dto.setNome(nome);
         dto.setEmail(email);

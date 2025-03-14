@@ -15,25 +15,18 @@ import jakarta.transaction.Transactional;
 public class UsuarioService {
 
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    
+   
 
     @Transactional
-    public UsuarioDTO cadastrar(UsuarioDTO dto){
+    public Usuario cadastrar(Usuario usuario){
         validarDadosUnicos(dto);
-        
+
         Usuario usuario = new Usuario();
         usuario.setNome(dto.nome());
-        usuario.setSenha(passwordEncoder.encode(dto.senha()));
-        usuario.setEmail(dto.email());
-        usuario.setCpf(dto.cpf());
-        usuario.setTelefone(dto.telefone());
-        usuario.setDataNascimento(dto.dataNascimento());
+        usuario.setSenha(passwordEncoder.encode(dto.senha)));
+        usuario.set
+        
+
 
         switch (dto.tipoUsuario().toUpperCase()) {
             case "ADMINISTRADOR":
@@ -48,24 +41,11 @@ public class UsuarioService {
                 break;
         }
 
-        Usuario usuarioSalvo = usuarioRepository.save(usuario);
-        return converterParaDTO(usuarioSalvo);
-
+      
 
 
     }
-    private UsuarioDTO converterParaDTO(Usuario usuario){
-        return new UsuarioDTO(
-            usuario.getNome(),
-            usuario.getEmail(),
-            null,
-            usuario.getDataNascimento(),
-            usuario.getTelefone(),
-            usuario.getCpf(),
-            usuario.getTipoUsuario()
-            
-    );}
-
+   
 
     private void validarDadosUnicos(UsuarioDTO dto){
         if(usuarioRepository.existsByEmail(dto.email())){
@@ -75,6 +55,16 @@ public class UsuarioService {
             throw new IllegalArgumentException("CPF já cadastrado");
         }
     }
+
+
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    
     
     }
 
