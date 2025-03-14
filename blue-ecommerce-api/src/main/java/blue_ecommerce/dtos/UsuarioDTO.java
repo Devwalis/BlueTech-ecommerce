@@ -15,7 +15,8 @@ public record UsuarioDTO(
     LocalDate dataNascimento,
     String telefone,
     String cpf,
-    String tipoUsuario
+    String tipoUsuario,
+    String token
     
 ){
 

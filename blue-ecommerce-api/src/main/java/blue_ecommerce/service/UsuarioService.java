@@ -63,8 +63,8 @@ public class UsuarioService {
             usuario.getTelefone(),
             usuario.getCpf(),
             usuario.getTipoUsuario()
-            );
-    }
+            
+    );}
 
 
     private void validarDadosUnicos(UsuarioDTO dto){
