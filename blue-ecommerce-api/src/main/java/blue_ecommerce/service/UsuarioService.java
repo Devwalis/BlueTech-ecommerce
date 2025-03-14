@@ -15,16 +15,17 @@ import jakarta.transaction.Transactional;
 public class UsuarioService {
 
 
-   
-
     @Transactional
-    public Usuario cadastrar(Usuario usuario){
+    public Usuario cadastrar(UsuarioDTO dto){
         validarDadosUnicos(dto);
 
         Usuario usuario = new Usuario();
         usuario.setNome(dto.nome());
-        usuario.setSenha(passwordEncoder.encode(dto.senha)));
-        usuario.set
+        usuario.setDataNascimento(dto.dataNascimento());
+        usuario.setTelefone(dto.telefone());
+        usuario.setCpf(dto.cpf());
+        
+
         
 
 
@@ -41,6 +42,8 @@ public class UsuarioService {
                 break;
         }
 
+        return usuarioRepository.save(usuario);
+
       
 
 
@@ -54,6 +57,9 @@ public class UsuarioService {
         if(usuarioRepository.existsByCpf(dto.cpf())){
             throw new IllegalArgumentException("CPF já cadastrado");
         }
+
+
+       
     }
 
 

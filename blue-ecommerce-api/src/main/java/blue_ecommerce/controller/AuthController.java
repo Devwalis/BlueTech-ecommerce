@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,36 +21,47 @@ import blue_ecommerce.service.TokenService;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+
     
 
+@Autowired
+private TokenService tokenService;
 
-    @PostMapping("/login")
-    public ResponseEntity<UsuarioDTO> login(@RequestBody AutenticacaoDTO dto) {
-        //TODO: process POST request
-        Authentication authentication = AuthenticationManager.authenticated();
-            new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword());
-        
-        
+@Autowired
+private AuthenticationManager authenticationManager;
+
+
+ 
+
+
+@PostMapping("/login")
+public ResponseEntity<UsuarioDTO> login(@RequestBody AutenticacaoDTO dto){
+    try{
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword());
+
+        Authentication authentication = authenticationManager.authenticate(authenticationToken);
 
         Usuario usuario = (Usuario) authentication.getPrincipal();
 
-        String token = tokenService.gerarToken(usuario);
+        String token = tokenService.generateToken(usuario);
 
+        UsuarioDTO usuarioDTO = new UsuarioDTO(
+            usuario.getNome(),
+            usuario.getEmail(),
+            usuario.getDataNascimento(),
+            usuario.getTelefone(),
+            usuario.getCpf(),
+            usuario.getTipoUsuario(),
+            token
+        );
 
-        UsuarioDTO usuarioDTO = usuario.converterParaDTO();
-        usuarioDTO.setToken(token);
+        return ResponseEntity.ok(usuarioDTO);
 
-
-        
-        
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioDTO);
+    } catch (BadCredentialsException e){
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
+}
 
- @Autowired
-    private TokenService tokenService;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
 }
 
     
