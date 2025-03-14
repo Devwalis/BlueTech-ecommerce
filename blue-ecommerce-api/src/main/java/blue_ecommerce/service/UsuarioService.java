@@ -9,30 +9,30 @@ import blue_ecommerce.models.Usuario;
 import blue_ecommerce.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 
-
-
 @Service
 public class UsuarioService {
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Transactional
-    public Usuario cadastrar(UsuarioDTO dto){
+    public UsuarioDTO cadastrar(UsuarioDTO dto) {
         validarDadosUnicos(dto);
 
         Usuario usuario = new Usuario();
         usuario.setNome(dto.nome());
+        usuario.setEmail(dto.email());
+        usuario.setSenha(passwordEncoder.encode(dto.senha())); 
         usuario.setDataNascimento(dto.dataNascimento());
         usuario.setTelefone(dto.telefone());
         usuario.setCpf(dto.cpf());
-        
-
-        
-
 
         switch (dto.tipoUsuario().toUpperCase()) {
             case "ADMINISTRADOR":
                 usuario.setAdministrador(true);
-                
                 break;
             case "FORNECEDOR":
                 usuario.setFornecedor(true);
@@ -42,38 +42,29 @@ public class UsuarioService {
                 break;
         }
 
-        return usuarioRepository.save(usuario);
-
-      
-
-
+        Usuario usuarioSalvo = usuarioRepository.save(usuario);
+        return converterParaDTO(usuarioSalvo);
     }
-   
 
-    private void validarDadosUnicos(UsuarioDTO dto){
-        if(usuarioRepository.existsByEmail(dto.email())){
-            throw new IllegalArgumentException("Email já Cadastrado");
+    private UsuarioDTO converterParaDTO(Usuario usuario) {
+        return new UsuarioDTO(
+            usuario.getNome(),
+            usuario.getEmail(),
+            null, 
+            usuario.getDataNascimento(),
+            usuario.getTelefone(),
+            usuario.getCpf(),
+            usuario.getTipoUsuario(),
+            null  
+        );
+    }
+
+    private void validarDadosUnicos(UsuarioDTO dto) {
+        if (usuarioRepository.existsByEmail(dto.email())) {
+            throw new IllegalArgumentException("Email já cadastrado");
         }
-        if(usuarioRepository.existsByCpf(dto.cpf())){
+        if (usuarioRepository.existsByCpf(dto.cpf())) {
             throw new IllegalArgumentException("CPF já cadastrado");
         }
-
-
-       
     }
-
-
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    
-    
-    }
-
-
-
-
+}

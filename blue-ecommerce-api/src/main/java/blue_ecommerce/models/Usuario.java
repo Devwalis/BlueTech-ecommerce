@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import blue_ecommerce.dtos.UsuarioDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -77,19 +76,7 @@ public class Usuario  implements UserDetails {
     }
 
 
-    public UsuarioDTO converterParaDTO(){
-        UsuarioDTO dto = new UsuarioDTO();
-
-        dto.setNome(nome);
-        dto.setEmail(email);
-        dto.setTelefone(telefone);
-        dto.setAdministrador(administrador);
-        dto.setFornecedor(fornecedor);
-        dto.setCliente(cliente);
-        dto.setToken(null);
-
-        return dto;
-    }
+    
 
 
     @Override
