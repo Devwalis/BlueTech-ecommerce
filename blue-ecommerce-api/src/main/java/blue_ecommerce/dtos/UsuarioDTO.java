@@ -12,7 +12,7 @@ import blue_ecommerce.models.Usuario;
 public record UsuarioDTO(
     String nome,
     String email,
-    null,
+    String senha,
     @JsonFormat(pattern = "yyyy-MM-dd")
     LocalDate dataNascimento,
     String telefone,
@@ -26,6 +26,7 @@ public record UsuarioDTO(
         this(
             usuario.getNome(),
             usuario.getEmail(),
+            null,
             usuario.getDataNascimento(), 
             usuario.getTelefone(),
             usuario.getCpf(),
