@@ -52,11 +52,11 @@ public class TokenService {
     }
 
 
-@Value("${spring.security.secret-key}")
+@Value("${spring.security.secret.key}")
 private String SECRET_KEY;
 
 
-@Value("${spring.security.token-issuer}")
+@Value("${spring.security.token.issuer}")
 private String TOKEN_ISSUER;
 
     
