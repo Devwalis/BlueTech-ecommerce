@@ -50,7 +50,7 @@ private String _obterTokenDaRequisicao(HttpServletRequest requisicao){
 
     if(Objects.nonNull(authorization)){
         //Bearer
-        return authorization.replace("Bearer", "");
+        return authorization.replace("Bearer", "") ;
 
     }
     return null;
