@@ -85,11 +85,11 @@ public class Usuario  implements UserDetails {
         return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
         if(fornecedor){
-            return List.of(new SimpleGrantedAuthority("ROlE_FORNECEDOR"));
+            return List.of(new SimpleGrantedAuthority("ROLE_FORNECEDOR"));
 
         }
         if(cliente){
-            return List.of(new SimpleGrantedAuthority("Role_CLIENTE"));
+            return List.of(new SimpleGrantedAuthority("ROLE_CLIENTE"));
 
         }
         return null;
