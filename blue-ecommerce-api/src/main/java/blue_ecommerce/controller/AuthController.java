@@ -48,6 +48,7 @@ public ResponseEntity<UsuarioDTO> login(@RequestBody AutenticacaoDTO dto){
         UsuarioDTO usuarioDTO = new UsuarioDTO(
             usuario.getNome(),
             usuario.getEmail(),
+            null,
             usuario.getDataNascimento(),
             usuario.getTelefone(),
             usuario.getCpf(),

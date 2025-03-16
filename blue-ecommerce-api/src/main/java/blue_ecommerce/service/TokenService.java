@@ -9,12 +9,23 @@ import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 
+import blue_ecommerce.controller.AuthController;
 import blue_ecommerce.models.Usuario;
 
 
 @Service
 public class TokenService {
+
+    private final AuthController authController;
+
+    private final AutenticacaoService autenticacaoService;
+
+    TokenService(AutenticacaoService autenticacaoService, AuthController authController) {
+        this.autenticacaoService = autenticacaoService;
+        this.authController = authController;
+    }
     //Gerar um token a partir do cliente/usuario
     public String generateToken (Usuario usuario){
         Algorithm algorithm  = Algorithm.HMAC256(SECRET_KEY);
@@ -34,13 +45,16 @@ public class TokenService {
     // Obtém o sujeito (cliente/usuario) a partir do token
     public String obterEmailUsuario(String token){
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
-
-
-        return JWT.require(algorithm)
-            .withIssuer(TOKEN_ISSUER)
-            .build()
-            .verify(token)
-            .getSubject();
+try{
+    return JWT.require(algorithm)
+    .withIssuer(TOKEN_ISSUER)
+    .build()
+    .verify(token)
+    .getSubject();
+} catch (JWTVerificationException ex){
+    return null;
+}
+     
     }
 
     //Gera a data de expiração do token JWt
