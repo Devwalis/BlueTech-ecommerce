@@ -1,5 +1,8 @@
 package blue_ecommerce.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import blue_ecommerce.dtos.AutenticacaoDTO;
-import blue_ecommerce.dtos.UsuarioDTO;
 import blue_ecommerce.models.Usuario;
 import blue_ecommerce.service.TokenService;
 
@@ -35,7 +37,7 @@ private AuthenticationManager authenticationManager;
 
 
 @PostMapping("/login")
-public ResponseEntity<UsuarioDTO> login(@RequestBody AutenticacaoDTO dto){
+public ResponseEntity<Map<String, Object>> login(@RequestBody AutenticacaoDTO dto){
     try{
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword());
 
@@ -45,25 +47,24 @@ public ResponseEntity<UsuarioDTO> login(@RequestBody AutenticacaoDTO dto){
 
         String token = tokenService.generateToken(usuario);
 
-        UsuarioDTO usuarioDTO = new UsuarioDTO(
-            usuario.getNome(),
-            usuario.getEmail(),
-            null,
-            usuario.getDataNascimento(),
-            usuario.getTelefone(),
-            usuario.getCpf(),
-            usuario.getTipoUsuario(),
-            token
-        );
+       
+        Map<String, Object> response = new HashMap<>();
+        response.put("token", token);
+        response.put("tipoUsuario", usuario.getTipoUsuario());
+        response.put("nome", usuario.getNome());
 
-        return ResponseEntity.ok(usuarioDTO);
+        return ResponseEntity.ok(response);
 
     } catch (BadCredentialsException e){
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-    }
-}
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body( Map.of("mensagem", "Credenciais inválidas"));
 
+                
+            }
+        }
 }
+    
+        
 
     
 

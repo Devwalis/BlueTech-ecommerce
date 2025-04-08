@@ -25,11 +25,11 @@ public record UsuarioDTO(
     public UsuarioDTO(Usuario usuario, String token) {
         this(
             usuario.getNome(),
-            usuario.getEmail(),
             null,
-            usuario.getDataNascimento(), 
-            usuario.getTelefone(),
-            usuario.getCpf(),
+            null,
+            null, 
+           null,
+           null,
             usuario.getTipoUsuario(), 
             token
         );
