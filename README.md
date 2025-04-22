@@ -3,7 +3,7 @@ E-commerce API
 Este repositório contém a implementação de uma API para um sistema de e-commerce, desenvolvido em Java com Spring Boot. O sistema segue a arquitetura de microsserviços e utiliza bancos de dados relacionais para armazenamento.
 
 Modelo Relacional Lógico:
-<h1>Relacionamento de Usuário e Endereço</h1>
+Relacionamento de Usuário e Endereço
 ![image](https://github.com/user-attachments/assets/41f0b5b5-78fe-47b5-988e-47210f2a412b)
 
 Relacionamento de Produto e Categoria
