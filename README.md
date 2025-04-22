@@ -7,7 +7,7 @@ Modelo Relacional Lógico:
 ![image](https://github.com/user-attachments/assets/41f0b5b5-78fe-47b5-988e-47210f2a412b)
 
 <h1>Relacionamento de Produto e Categoria</h1>
-![image](https://github.com/user-attachments/assets/56427894-65a1-4431-ac91-45a5f301ce3a)
+<img src="![image](https://github.com/user-attachments/assets/56427894-65a1-4431-ac91-45a5f301ce3a)">
 
 
 Tecnologias Utilizadas
