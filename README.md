@@ -56,6 +56,23 @@ Maven
 
 Docker (opcional, para rodar o MySQL localmente)
 
+3.Sistem Desing
+
+[Client]  
+   |  
+[API Gateway (Spring Cloud Gateway)]  
+   |  
+[Microservices (Docker Containers)]  
+   ├── User Service (ECS/EKS Task) → RDS  
+   ├── Product Service (ECS/EKS Task) → RDS + S3  
+   ├── Order Service (ECS/EKS Task) → DynamoDB  
+   ├── Payment Service (ECS/EKS Task) → Lambda  
+   └── Notification Service (ECS/EKS Task) → SQS + SES  
+   |  
+[VPC AWS]  
+   ├── Subnets Públicas/Privadas  
+   └── Security Groups (Restrição de tráfego)  
+
 2. Configurar Banco de Dados
 
 Se estiver usando MySQL localmente, crie um banco de dados:
