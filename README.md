@@ -2,6 +2,14 @@ E-commerce API
 
 Este repositório contém a implementação de uma API para um sistema de e-commerce, desenvolvido em Java com Spring Boot. O sistema segue a arquitetura de microsserviços e utiliza bancos de dados relacionais para armazenamento.
 
+Modelo Relacional Lógico:
+Relacionamento de Usuário e Endereço
+![image](https://github.com/user-attachments/assets/41f0b5b5-78fe-47b5-988e-47210f2a412b)
+
+Relacionamento de Produto e Categoria
+![image](https://github.com/user-attachments/assets/56427894-65a1-4431-ac91-45a5f301ce3a)
+
+
 Tecnologias Utilizadas
 
 Java 17
@@ -55,6 +63,23 @@ Java 17
 Maven
 
 Docker (opcional, para rodar o MySQL localmente)
+
+3.Sistem Desing
+
+[Client]  
+   |  
+[API Gateway (Spring Cloud Gateway)]  
+   |  
+[Microservices (Docker Containers)]  
+   ├── User Service (ECS/EKS Task) → RDS  
+   ├── Product Service (ECS/EKS Task) → RDS + S3  
+   ├── Order Service (ECS/EKS Task) → DynamoDB  
+   ├── Payment Service (ECS/EKS Task) → Lambda  
+   └── Notification Service (ECS/EKS Task) → SQS + SES  
+   |  
+[VPC AWS]  
+   ├── Subnets Públicas/Privadas  
+   └── Security Groups (Restrição de tráfego)  
 
 2. Configurar Banco de Dados
 
