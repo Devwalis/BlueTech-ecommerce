@@ -1,7 +1,8 @@
 package com.ecommerce.produtos_api.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,11 +14,12 @@ import com.ecommerce.produtos_api.model.Produto;
 public class ProdutoController {
 
     @PostMapping
-    public ResponseEntity <ProdutoDTO>(@RequestBody Produto produto) {
+    public ResponseEntity <ProdutoDTO>(@RequestBodys Produto produto) {
    
         
-        return entity;
+        return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.salvarProduto(produto));
     }
+    
     
 
     
