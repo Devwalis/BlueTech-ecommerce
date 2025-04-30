@@ -32,6 +32,13 @@ public class Produto {
     @Column(nullable = false)
     private Double precoDouble;
 
+
+  @Column(nullable = false)
+  private String caracteristicas;
+
+  @Column(nullable = false)
+  private String avaliacoes;
+
     @ManyToOne
     @JoinColumn Categoria categoria;
 
