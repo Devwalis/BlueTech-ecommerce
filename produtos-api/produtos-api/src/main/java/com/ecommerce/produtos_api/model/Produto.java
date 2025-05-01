@@ -28,7 +28,7 @@ public class Produto {
 
 
     @Column(nullable = false)
-    private String descrição;
+    private String descricao;
     
 
     @Column(nullable = false)
@@ -53,8 +53,9 @@ public class Produto {
       dto.setId(id);
       dto.setNome(nome);
       dto.setCodigo(codigo);
-      dto.setDescricao(descricao);
-      dto.setPreco(preco);
+      dto.setDescricao(descrição);
+      dto.setPreco(precoDouble);
+      dto.setCaracteristicas(caracteristicas);
       dto.setCategoria(categoria.getNome());
 
       return dto;

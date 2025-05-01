@@ -22,4 +22,10 @@ public class Categoria {
 
     @OneToMany
     private List<Produto> produtos;
+
+
+    public String getNome() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNome'");
+    }
 }
