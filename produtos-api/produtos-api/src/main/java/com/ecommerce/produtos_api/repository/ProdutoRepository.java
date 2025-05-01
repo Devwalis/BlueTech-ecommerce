@@ -22,4 +22,6 @@ Optional<List<Produto>> findByCategoria(@Param("nome") String nomeCategoria);
 
 @Query("SELECT p FROM tb_produtos p WHERE p.categoria.nome = :nome AND p.preco <= :preco")
 Optional<List<Produto>> findByCategoriaAndPrecoSmallerThan(@Param("nome") String nomeCategoria, @Param("preco") double preco);
+
+Optional<List<Produto>> findByPrecoBetween(double limiteInferior, double limiteSuperior);
 }
