@@ -9,6 +9,6 @@ import com.ecommerce.produtos_api.model.Produto;
 
 @Repository
 public interface ProdutoRepository  extends JpaRepository<Produto, Long>{
-    Optional<Produto> findByIdOptional(Long id);
-    boolean findByCategoria(String categoria);
+
+Optional<Produto> findByCodigo(String codigo);
 }
