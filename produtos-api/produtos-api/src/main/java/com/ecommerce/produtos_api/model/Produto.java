@@ -9,8 +9,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "tb_produtos")
 public class Produto {
     
@@ -53,7 +57,7 @@ public class Produto {
       dto.setId(id);
       dto.setNome(nome);
       dto.setCodigo(codigo);
-      dto.setDescricao(descrição);
+      dto.setDescricao(descricao);
       dto.setPreco(precoDouble);
       dto.setCaracteristicas(caracteristicas);
       dto.setCategoria(categoria.getNome());
