@@ -48,6 +48,9 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency><groupId>com.ecommerce.compras.client</groupId>
+			<artifactId>compras-client</artifactId>
+			<version>0.0.1-SNAPSHOT</version></dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
