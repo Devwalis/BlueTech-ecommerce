@@ -1,4 +1,4 @@
-package com.ecommerce.compras_api.dto;
+package com.ecommerce.compras.client.compra;
 
 import com.ecommerce.compras_api.model.Compra;
 
