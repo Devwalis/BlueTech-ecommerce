@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import blue_ecommerce.dtos.UsuarioDTO;
+import com.ecommerce.compras.client.usuario.UsuarioDTO;
+
 import blue_ecommerce.models.Usuario;
 import blue_ecommerce.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;

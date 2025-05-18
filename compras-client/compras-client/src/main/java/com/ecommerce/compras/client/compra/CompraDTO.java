@@ -1,8 +1,9 @@
-package com.ecommerce.compras_api.dto;
+package com.ecommerce.compras.client.compra;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import com.ecommerce.compras.client.usuario.ClienteDTO;
 import com.ecommerce.compras_api.model.Item;
 
 public class CompraDTO {

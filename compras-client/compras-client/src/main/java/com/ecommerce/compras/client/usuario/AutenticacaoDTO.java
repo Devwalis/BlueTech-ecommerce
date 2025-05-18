@@ -1,4 +1,4 @@
-package blue_ecommerce.dtos;
+package com.ecommerce.compras.client.usuario;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

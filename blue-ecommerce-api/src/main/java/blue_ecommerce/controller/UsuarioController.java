@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import blue_ecommerce.dtos.UsuarioDTO;
+import com.ecommerce.compras.client.usuario.UsuarioDTO;
+
 import blue_ecommerce.service.UsuarioService;
 
 @RestController

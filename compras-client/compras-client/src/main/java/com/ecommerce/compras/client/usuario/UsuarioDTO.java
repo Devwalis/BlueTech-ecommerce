@@ -1,4 +1,4 @@
-package blue_ecommerce.dtos;
+package com.ecommerce.compras.client.usuario;
 
 import java.time.LocalDate;
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ecommerce.produtos_api.dto.ProdutoDTO;
+import com.ecommerce.compras.client.produto.ProdutoDTO;
 import com.ecommerce.produtos_api.model.Produto;
 import com.ecommerce.produtos_api.servico.ProdutoService;
 

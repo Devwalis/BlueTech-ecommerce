@@ -1,4 +1,4 @@
-package com.ecommerce.produtos_api.dto;
+package com.ecommerce.compras.client.produto;
 
 
 
