@@ -22,6 +22,7 @@ import lombok.Data;
 
 
 @Data
+
 @AllArgsConstructor
 @Entity(name = "tb_usuarios")
 public class Usuario  implements UserDetails {

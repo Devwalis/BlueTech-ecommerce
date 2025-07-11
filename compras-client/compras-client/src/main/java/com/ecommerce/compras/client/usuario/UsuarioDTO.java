@@ -4,7 +4,9 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import blue_ecommerce.models.Usuario;
+
+
+
 
 
 
@@ -22,17 +24,6 @@ public record UsuarioDTO(
     
 ){
 
-    public UsuarioDTO(Usuario usuario, String token) {
-        this(
-            usuario.getNome(),
-            null,
-            null,
-            null, 
-           null,
-           null,
-            usuario.getTipoUsuario(), 
-            token
-        );
     }
-}
+
 
